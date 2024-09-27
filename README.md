@@ -1,1 +1,1 @@
-# notateczki
+# notateczki do szkółki
