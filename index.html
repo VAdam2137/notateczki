@@ -17,20 +17,38 @@
 
 
 window.onload = function() {
-    const unit = prompt("Wybierz jednostkę do przeliczenia (km/miles):");
-    const value = parseFloat(prompt("Podaj wartość do przeliczenia:"));
+    let unit;
+    let value;
     let result;
 
+    while (true) {
+        unit = prompt("Wybierz jednostkę do przeliczenia (km/miles):");
+        if (unit === 'km' || unit === 'miles') {
+            break;
+        } else {
+            alert("Nieprawidłowa jednostka! Wybierz 'km' lub 'miles'.");
+        }
+    }
+
+    while (true) {
+        value = prompt("Podaj wartość do przeliczenia:");
+        if (!isNaN(value) && value.trim() !== "") {
+            value = parseFloat(value);
+            break;
+        } else {
+            alert("Nieprawidłowa wartość! Podaj liczbę.");
+        }
+    }
+
     if (unit === 'km') {
-        result = value * 0.621371 + ' mil';
+        result = (value * 0.621371).toFixed(2) + ' mil';
     } else if (unit === 'miles') {
-        result = value / 0.621371 + ' km';
-    } else {
-        result = "Nieprawidłowa jednostka!";
+        result = (value / 0.621371).toFixed(2) + ' km';
     }
 
     document.getElementById('result').innerText = `Wynik: ${result}`;
 }
+
 
 
 
@@ -49,6 +67,7 @@ body {
     padding: 24px;
     border: 2px solid red;
     background-color: white;
+    border-radius: 30px; 
 }
 
 h1 {
